@@ -148,6 +148,22 @@
                             $scope.refresh();
                         },
 
+                        /* rename node maintaining position */
+                        renameNode: function(oldKey, newKey){
+                          if ($scope.node.type() === 'object'){
+                            var json = {};
+                            angular.forEach($scope.json, function(value, key){
+                              if (key == oldKey) {
+                                json[newKey] = value;
+                              }
+                              else  {
+                                json[key] = value;
+                              }
+                            });
+                            $scope.json = json;
+                          }
+                        },
+
                         /* reset node value by key to default == null */
                         resetNode: function(key){
                             $scope.json[key] = null;
